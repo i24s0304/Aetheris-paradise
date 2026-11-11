@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drift Paradise — вступление в команду</title>
+  <meta name="description" content="Подай заявку на вступление в команду сервера Drift Paradise.">
+  <style>
+    :root {
+      --bg: #060a09;
+      --bg-2: #0a100e;
+      --card: #0e1613;
+      --card-2: #12201b;
+      --line: #1d2f28;
+      --text: #e6f5ee;
+      --muted: #8fb3a4;
+      --green: #39ff8a;
+      --green-soft: #7dffb0;
+      --cyan: #2ee6c8;
+      --violet: #9d6bff;
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1000px 550px at 85% -10%, rgba(57,255,138,.10), transparent 60%),
+        radial-gradient(800px 500px at -10% 100%, rgba(46,230,200,.08), transparent 55%),
+        radial-gradient(700px 400px at 100% 110%, rgba(157,107,255,.07), transparent 55%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.55;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image: radial-gradient(rgba(57,255,138,.05) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: radial-gradient(ellipse at top, #000 0%, transparent 70%);
+    }
+
+    .wrap { max-width: 760px; margin: 0 auto; padding: 30px 20px 70px; position: relative; z-index: 1; }
+
+    .brand { display: flex; align-items: center; gap: 13px; margin-bottom: 6px; }
+    .brand svg { display: block; filter: drop-shadow(0 0 8px rgba(57,255,138,.5)); }
+    .brand-name { font-size: 23px; font-weight: 800; letter-spacing: .4px; }
+    .brand-name span { color: var(--green); text-shadow: 0 0 14px rgba(57,255,138,.5); }
+
+    .hero { margin: 26px 0 24px; }
+    .hero h1 { font-size: clamp(26px, 5vw, 40px); line-height: 1.14; margin: 0 0 12px; font-weight: 800; }
+    .hero h1 em { font-style: normal; color: var(--green); text-shadow: 0 0 18px rgba(57,255,138,.45); }
+    .hero p { color: var(--muted); font-size: 16px; margin: 0; max-width: 590px; }
+
+    /* Вкладки */
+    .tabs { display: flex; gap: 8px; margin-bottom: 20px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 6px; width: fit-content; }
+    .tab {
+      display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border-radius: 10px;
+      border: 0; background: transparent; color: var(--muted); font-size: 15px; font-weight: 700;
+      cursor: pointer; transition: background .15s, color .15s, box-shadow .15s;
+    }
+    .tab:hover { color: var(--text); }
+    .tab.active {
+      background: linear-gradient(135deg, rgba(57,255,138,.18), rgba(46,230,200,.14));
+      color: var(--green-soft); box-shadow: 0 0 18px rgba(57,255,138,.18) inset;
+    }
+    .tab .ico { font-size: 16px; }
+
+    .card {
+      background: linear-gradient(180deg, var(--card-2), var(--card));
+      border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 28px; position: relative; overflow: hidden;
+    }
+    .card::before {
+      content: ""; position: absolute; top: -60%; left: -20%; width: 140%; height: 60%;
+      background: linear-gradient(100deg, transparent, rgba(57,255,138,.06), transparent);
+      transform: rotate(-6deg); pointer-events: none;
+    }
+
+    .field { margin-bottom: 22px; position: relative; }
+    .field label {
+      display: flex; align-items: center; gap: 8px; font-weight: 650; margin-bottom: 9px; font-size: 14.5px;
+    }
+    .field label .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
+
+    .inp-wrap { position: relative; }
+    .inp-glow {
+      position: absolute; inset: 0; border-radius: 12px; padding: 1.5px; pointer-events: none;
+      opacity: 0; transition: opacity .2s; z-index: 0;
+      background: linear-gradient(90deg, var(--green), var(--cyan), var(--violet), var(--green));
+      background-size: 300% 100%; animation: rgbflow 3s linear infinite;
+      box-shadow: 0 0 22px rgba(57,255,138,.25), 0 0 40px rgba(46,230,200,.15);
+    }
+    @keyframes rgbflow { to { background-position: 300% 0; } }
+    .inp-wrap:hover .inp-glow, .inp-wrap:focus-within .inp-glow { opacity: 1; }
+
+    .inp-wrap input {
+      width: 100%; padding: 14px 15px; font-size: 16px; position: relative; z-index: 1;
+      background: var(--bg-2); color: var(--text);
+      border: 1px solid var(--line); border-radius: 12px; outline: none;
+      transition: border-color .15s;
+    }
+    .inp-wrap input:focus { border-color: transparent; }
+
+    .hint { color: var(--muted); font-size: 13px; margin-top: 7px; font-weight: 400; margin-left: 17px; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      border: 0; cursor: pointer; font-weight: 750; font-size: 16px;
+      padding: 15px 24px; border-radius: 12px; position: relative;
+      background: linear-gradient(135deg, var(--green), var(--cyan));
+      color: #04120b; transition: transform .06s, filter .18s, box-shadow .18s;
+      box-shadow: 0 8px 24px rgba(57,255,138,.22);
+    }
+    .btn:hover { filter: brightness(1.06); box-shadow: 0 10px 30px rgba(57,255,138,.32); }
+    .btn:active { transform: translateY(1px); }
+    .btn:disabled { opacity: .6; cursor: not-allowed; }
+    .btn:focus-visible { outline: 3px solid rgba(46,230,200,.5); outline-offset: 2px; }
+    .btn-ghost {
+      background: transparent; color: var(--muted); border: 1px solid var(--line); box-shadow: none;
+    }
+    .btn-ghost:hover { color: var(--text); border-color: rgba(46,230,200,.5); box-shadow: none; }
+    .btn-danger { color: #ff6b6b; border-color: rgba(255,107,107,.35); }
+    .btn-danger:hover { border-color: rgba(255,107,107,.7); color: #ff8888; }
+
+    .alert { display: none; padding: 13px 16px; border-radius: 12px; margin-top: 18px; font-size: 15px; border: 1px solid transparent; }
+    .alert.show { display: block; }
+    .alert.ok { background: rgba(57,255,138,.08); border-color: rgba(57,255,138,.35); color: var(--green-soft); }
+    .alert.err { background: rgba(255,107,107,.08); border-color: rgba(255,107,107,.35); color: #ffadad; }
+
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 26px; }
+    .step {
+      background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px;
+      transition: border-color .2s, transform .2s;
+    }
+    .step:hover { border-color: rgba(57,255,138,.4); transform: translateY(-2px); }
+    .step .num {
+      width: 30px; height: 30px; border-radius: 9px; display: flex; align-items: center; justify-content: center;
+      background: rgba(57,255,138,.12); color: var(--green); font-weight: 800; margin-bottom: 11px;
+      box-shadow: 0 0 12px rgba(57,255,138,.15);
+    }
+    .step h3 { margin: 0 0 4px; font-size: 15px; }
+    .step p { margin: 0; color: var(--muted); font-size: 13.5px; }
+
+    /* Админ-интерфейс */
+    .admin-bar { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+    .filter { display: flex; gap: 8px; flex-wrap: wrap; }
+    .chip {
+      background: var(--bg-2); color: var(--muted); border: 1px solid var(--line);
+      padding: 9px 17px; border-radius: 22px; cursor: pointer; font-size: 14px; font-weight: 600;
+      transition: all .15s;
+    }
+    .chip:hover { color: var(--text); }
+    .chip.active { background: rgba(57,255,138,.13); color: var(--green-soft); border-color: rgba(57,255,138,.5); box-shadow: 0 0 14px rgba(57,255,138,.12); }
+    .chip .count { opacity: .75; font-weight: 400; }
+
+    .empty { text-align: center; color: var(--muted); padding: 46px 10px; }
+    .empty .big { font-size: 40px; margin-bottom: 10px; opacity: .7; }
+
+    .app-item {
+      display: flex; align-items: center; gap: 16px; padding: 17px 19px;
+      background: var(--bg-2); border: 1px solid var(--line); border-radius: 13px; margin-bottom: 12px; flex-wrap: wrap;
+      position: relative; transition: border-color .2s;
+    }
+    .app-item:hover { border-color: rgba(57,255,138,.35); }
+    .app-info { flex: 1; min-width: 170px; }
+    .app-nick { font-size: 17px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+    .app-nick::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
+    .app-meta { color: var(--muted); font-size: 13.5px; margin-top: 3px; }
+    .hours-tag {
+      background: rgba(46,230,200,.10); color: var(--cyan);
+      padding: 5px 11px; border-radius: 9px; font-size: 13px; font-weight: 700; white-space: nowrap;
+      border: 1px solid rgba(46,230,200,.25);
+    }
+    .status-tag { padding: 5px 11px; border-radius: 9px; font-size: 12.5px; font-weight: 700; }
+    .status-accepted { background: rgba(57,255,138,.13); color: var(--green-soft); border: 1px solid rgba(57,255,138,.35); }
+    .status-rejected { background: rgba(255,107,107,.13); color: #ffadad; border: 1px solid rgba(255,107,107,.35); }
+    .status-pending { background: rgba(46,230,200,.13); color: var(--cyan); border: 1px solid rgba(46,230,200,.35); }
+    .app-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    .login-box { max-width: 400px; margin: 30px auto 0; }
+    .spinner { width: 24px; height: 24px; border: 3px solid rgba(255,255,255,.12); border-top-color: var(--green); border-radius: 50%; margin: 44px auto; animation: spin .8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .hidden { display: none !important; }
+    .muted { color: var(--muted); }
+
+    @media (max-width: 580px) {
+      .steps { grid-template-columns: 1fr; }
+      .tabs { width: 100%; }
+      .tab { flex: 1; justify-content: center; }
+      .card { padding: 22px; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M20 14l-1.5-3-2-1.5H12L10.5 7H7L6 9H3l-1 3 1 2h2.5a2 2 0 0 0 3.5 0h4a2 2 0 0 0 3.5 0H20z" fill="#39ff8a"/>
+        <circle cx="7" cy="15" r="1.2" fill="#04120b"/><circle cx="17" cy="15" r="1.2" fill="#04120b"/>
+      </svg>
+      <div class="brand-name">Drift <span>Paradise</span></div>
+    </div>
+
+    <div class="hero">
+      <h1>Стань частью команды <em>Drift Paradise</em></h1>
+      <p>Заполни форму ниже — наша команда рассмотрит твою заявку. Статус решения можно узнать у наших администраторов.</p>
+    </div>
+
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-tab="apply" type="button"><span class="ico">✦</span> Подать заявку</button>
+      <button class="tab" data-tab="admin" type="button"><span class="ico">⌘</span> Админу</button>
+    </div>
+
+    <!-- Вкладка: подача заявки -->
+    <section id="tab-apply">
+      <div class="card">
+        <form id="appForm" novalidate>
+          <div class="field">
+            <label for="nickname"><span class="dot"></span> Ник на сервере</label>
+            <div class="inp-wrap">
+              <div class="inp-glow"></div>
+              <input type="text" id="nickname" name="nickname" maxlength="32" autocomplete="nickname" required autofocus>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field">
+            <label for="contact"><span class="dot"></span> Telegram или Discord</label>
+            <div class="inp-wrap">
+              <div class="inp-glow"></div>
+              <input type="text" id="contact" name="contact" maxlength="60" autocomplete="off" required>
+            </div>
+            <div class="hint">Куда тебе написать, чтобы сообщить о решении.</div>
+          </div>
+          <div class="field">
+            <label for="hours"><span class="dot"></span> Количество часов на сервере</label>
+            <div class="inp-wrap">
+              <div class="inp-glow"></div>
+              <input type="number" id="hours" name="hours" min="0" step="1" inputmode="numeric" required>
+            </div>
+            <div class="hint">Укажи примерное время игры, целое число.</div>
+          </div>
+          <button class="btn" type="submit" id="submitBtn"><span>Отправить заявку</span></button>
+          <div class="alert" id="alert" role="alert"></div>
+        </form>
+      </div>
+
+      <div class="steps">
+        <div class="step"><div class="num">1</div><h3>Заполни форму</h3><p>Ник и часы на сервере.</p></div>
+        <div class="step"><div class="num">2</div><h3>Дождись решения</h3><p>Заявки рассматриваются по очереди.</p></div>
+        <div class="step"><div class="num">3</div><h3>Присоединяйся</h3><p>Тебя уведомят о результате.</p></div>
+      </div>
+    </section>
+
+    <!-- Вкладка: админ -->
+    <section id="tab-admin" class="hidden">
+      <div id="loginView">
+        <div class="card login-box">
+          <h2 style="margin:0 0 18px;font-size:20px;">Вход для администратора</h2>
+          <form id="loginForm" novalidate>
+            <div class="field">
+              <label for="password"><span class="dot"></span> Пароль</label>
+              <div class="inp-wrap">
+                <div class="inp-glow"></div>
+                <input type="password" id="password" name="password" autocomplete="current-password" required>
+              </div>
+            </div>
+            <button class="btn" type="submit" id="loginBtn">Войти</button>
+            <div class="alert" id="loginAlert"></div>
+          </form>
+        </div>
+      </div>
+
+      <div id="dashboardView" class="hidden">
+        <div class="card">
+          <div class="admin-bar">
+            <div class="filter">
+              <button class="chip active" data-status="pending" type="button">Новые <span class="count" id="count-pending"></span></button>
+              <button class="chip" data-status="accepted" type="button">Принятые <span class="count" id="count-accepted"></span></button>
+              <button class="chip" data-status="rejected" type="button">Отклонённые <span class="count" id="count-rejected"></span></button>
+              <button class="chip" data-status="" type="button">Все</button>
+            </div>
+            <button class="btn btn-ghost" id="logoutBtn" type="button">Выйти</button>
+          </div>
+          <div id="loading" class="spinner"></div>
+          <div id="listWrap"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // ---------- Вкладки ----------
+    const $ = (id) => document.getElementById(id);
+    document.querySelectorAll('.tab').forEach((tab) => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach((t) => t.classList.toggle('active', t === tab));
+        $('tab-apply').classList.toggle('hidden', tab.dataset.tab !== 'apply');
+        $('tab-admin').classList.toggle('hidden', tab.dataset.tab !== 'admin');
+        if (tab.dataset.tab === 'admin' && getToken()) load(currentStatus);
+      });
+    });
+
+    // ---------- Подача заявки ----------
+    const form = $('appForm'), submitBtn = $('submitBtn'), alertBox = $('alert');
+    function showAlert(box, type, msg) {
+      box.className = 'alert show ' + type;
+      box.textContent = msg;
+    }
+    function clearAlert(box) { box.className = 'alert'; box.textContent = ''; }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearAlert(alertBox);
+      const nickname = $('nickname').value.trim();
+      const contact = $('contact').value.trim();
+      const hoursRaw = $('hours').value;
+      const hours = Number(hoursRaw);
+
+      let error = '';
+      if (!nickname) error = 'Укажите ваш ник на сервере.';
+      else if (!contact) error = 'Укажите ваш Telegram или Discord для связи.';
+      else if (!Number.isFinite(hours) || hours < 0 || hoursRaw === '')
+        error = 'Укажите корректное число часов (0 или больше).';
+
+      if (error) { showAlert(alertBox, 'err', error); return; }
+
+      submitBtn.disabled = true;
+      const original = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<span>Отправка…</span>';
+      try {
+        const res = await fetch('/api/applications', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nickname, contact, hours })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          showAlert(alertBox, 'ok', 'Заявка отправлена! Команда рассмотрит её в ближайшее время.');
+          form.reset();
+        } else {
+          showAlert(alertBox, 'err', (data && data.error) || 'Не удалось отправить заявку. Попробуйте позже.');
+        }
+      } catch (err) {
+        showAlert(alertBox, 'err', 'Ошибка соединения. Проверьте, что сервер работает, и попробуйте снова.');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = original;
+      }
+    });
+
+    // ---------- Админ ----------
+    const TOKEN_KEY = 'dp_admin_token';
+    let lsOk = true, storedToken = null;
+    try { storedToken = localStorage.getItem(TOKEN_KEY); } catch (e) { lsOk = false; }
+    let inMemoryToken = null;
+    let token = lsOk ? storedToken : null;
+    let currentStatus = 'pending';
+    const counts = { pending: 0, accepted: 0, rejected: 0 };
+
+    function getToken() { return token || inMemoryToken; }
+    function setToken(t) {
+      inMemoryToken = t;
+      if (lsOk) { try { localStorage.setItem(TOKEN_KEY, t); token = t; } catch (e) { token = null; } }
+      else token = null;
+    }
+
+    const loginView = $('loginView'), dashboardView = $('dashboardView');
+    const loginForm = $('loginForm'), loginBtn = $('loginBtn'), loginAlert = $('loginAlert');
+    const passwordInput = $('password'), listWrap = $('listWrap'), loading = $('loading');
+
+    function fmtDate(iso) {
+      if (!iso) return '';
+      return new Date(iso).toLocaleString('ru-RU', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' });
+    }
+    function hoursWord(h) {
+      const n = Math.abs(h) % 100, n1 = n % 10;
+      if (n > 10 && n < 20) return 'часов';
+      if (n1 === 1) return 'час';
+      if (n1 >= 2 && n1 <= 4) return 'часа';
+      return 'часов';
+    }
+    function statusTag(s) {
+      const label = s === 'accepted' ? 'Принят' : s === 'rejected' ? 'Отклонён' : 'На рассмотрении';
+      return '<span class="status-tag status-' + s + '">' + label + '</span>';
+    }
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, (c) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+    }
+
+    async function api(path, opts = {}) {
+      const headers = Object.assign({ 'Content-Type': 'application/json' }, opts.headers || {});
+      const t = getToken();
+      if (t) headers['Authorization'] = 'Bearer ' + t;
+      const res = await fetch(path, Object.assign({}, opts, { headers }));
+      if (res.status === 401) { logoutView(); throw new Error('unauthorized'); }
+      if (!res.ok) {
+        let msg = 'Ошибка запроса';
+        try { const d = await res.json(); if (d && d.error) msg = d.error; } catch (e) {}
+        const err = new Error(msg);
+        err.status = res.status;
+        throw err;
+      }
+      return res.json();
+    }
+
+    function renderList(items) {
+      if (!items.length) {
+        const label = currentStatus === 'pending' ? 'Новых заявок пока нет.'
+          : currentStatus === 'accepted' ? 'Пока нет принятых заявок.'
+          : currentStatus === 'rejected' ? 'Пока нет отклонённых заявок.'
+          : 'Заявок пока нет.';
+        listWrap.innerHTML = '<div class="empty"><div class="big">◇</div><div>' + label + '</div></div>';
+        return;
+      }
+      listWrap.innerHTML = items.map((a) =>
+        '<div class="app-item" data-id="' + a.id + '">'
+        + '<div class="app-info"><div class="app-nick">' + escapeHtml(a.nickname) + '</div>'
+        + '<div class="app-meta">Подана: ' + fmtDate(a.createdAt)
+        + (a.decidedAt ? ' · решение: ' + fmtDate(a.decidedAt) : '') + '</div>'
+        + (a.contact ? '<div class="app-meta contact-line">Связь: ' + escapeHtml(a.contact) + '</div>' : '')
+        + '</div>'
+        + '<div class="hours-tag">' + a.hours + ' ' + hoursWord(a.hours) + '</div>'
+        + statusTag(a.status)
+        + '<div class="app-actions">'
+        + (a.status === 'pending'
+            ? '<button class="btn" data-action="accept">Принять</button>'
+              + '<button class="btn btn-ghost" data-action="reject">Отклонить</button>'
+            : '')
+        + '<button class="btn btn-ghost btn-danger" data-action="delete">Удалить</button>'
+        + '</div></div>'
+      ).join('');
+    }
+
+    async function load(status) {
+      currentStatus = status || '';
+      document.querySelectorAll('.chip').forEach((c) => c.classList.toggle('active', c.dataset.status === currentStatus));
+      loading.classList.remove('hidden');
+      listWrap.innerHTML = '';
+      try {
+        const data = await api('/api/admin/applications?status=' + currentStatus);
+        renderList(data);
+      } catch (err) {
+        if (err.message !== 'unauthorized')
+          listWrap.innerHTML = '<div class="empty">Не удалось загрузить заявки: ' + escapeHtml(err.message) + '</div>';
+      } finally {
+        loading.classList.add('hidden');
+      }
+    }
+
+    async function loadCounts() {
+      try {
+        const data = await api('/api/admin/applications');
+        counts.pending = counts.accepted = counts.rejected = 0;
+        data.forEach((a) => { if (counts[a.status] !== undefined) counts[a.status]++; });
+        $('count-pending').textContent = counts.pending;
+        $('count-accepted').textContent = counts.accepted;
+        $('count-rejected').textContent = counts.rejected;
+      } catch (e) { /* ignore */ }
+    }
+
+    function showDashboard() {
+      loginView.classList.add('hidden');
+      dashboardView.classList.remove('hidden');
+      loadCounts();
+      load(currentStatus);
+    }
+    function logoutView() {
+      setToken(null);
+      clearAlert(loginAlert);
+      loginView.classList.remove('hidden');
+      dashboardView.classList.add('hidden');
+    }
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearAlert(loginAlert);
+      const pwd = passwordInput.value;
+      if (!pwd) { showAlert(loginAlert, 'err', 'Введите пароль.'); return; }
+      loginBtn.disabled = true;
+      const original = loginBtn.innerHTML;
+      loginBtn.innerHTML = 'Входим…';
+      try {
+        const res = await fetch('/api/admin/login', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password: pwd })
+        });
+        const data = await res.json();
+        if (res.ok && data.token) {
+          setToken(data.token);
+          passwordInput.value = '';
+          showDashboard();
+        } else {
+          showAlert(loginAlert, 'err', (data && data.error) || 'Неверный пароль.');
+        }
+      } catch (err) {
+        showAlert(loginAlert, 'err', 'Ошибка соединения с сервером.');
+      } finally {
+        loginBtn.disabled = false;
+        loginBtn.innerHTML = original;
+      }
+    });
+
+    $('logoutBtn').addEventListener('click', () => {
+      const t = getToken();
+      if (t) fetch('/api/admin/logout', { method: 'POST', headers: { 'Authorization': 'Bearer ' + t } }).catch(() => {});
+      logoutView();
+    });
+
+    document.querySelectorAll('.chip').forEach((chip) => chip.addEventListener('click', () => load(chip.dataset.status)));
+
+    listWrap.addEventListener('click', async (e) => {
+      const btn = e.target.closest('button[data-action]');
+      if (!btn) return;
+      const itemEl = btn.closest('.app-item');
+      const id = itemEl.dataset.id;
+      const action = btn.dataset.action;
+      if (action === 'delete') {
+        if (!confirm('Удалить эту заявку безвозвратно?')) return;
+        btn.disabled = true;
+        try { await api('/api/admin/applications/' + id, { method: 'DELETE' }); load(currentStatus); loadCounts(); }
+        catch (err) { alert(err.message); }
+        return;
+      }
+      const decision = action === 'accept' ? 'accepted' : 'rejected';
+      btn.disabled = true;
+      try {
+        await api('/api/admin/applications/' + id + '/decide', { method: 'POST', body: JSON.stringify({ decision }) });
+        load(currentStatus); loadCounts();
+      } catch (err) { alert(err.message); }
+    });
+  </script>
+</body>
+</html>
